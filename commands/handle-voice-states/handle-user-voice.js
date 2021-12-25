@@ -1,4 +1,8 @@
 const fs = require('fs');
+/*
+TODO:
+-
+*/
 
 module.exports = class User {
   // Handles all user read and write
@@ -54,34 +58,59 @@ module.exports = class User {
   initUser() {
     // arrayOfUsers is an array of user objects from a JSON file
     // Initialize the user - meaning allow class usage of user
-    const user = this.arrayOfUsers.filter(
+    const userArray = this.arrayOfUsers.filter(
       (userDatum) => userDatum.userID === this.userID,
     );
 
-    // Destructure user (user = user[0]). This is because user is an array
-    // With one item
-    let [userData] = user;
-    const userExists = user.length > 0;
+    // handles any missing data
+    const user = this.handleMissingData(userArray);
+
+    return user;
+  }
+
+  handleMissingData(userArray) {
+    // Checks to see if the user exists, and if not, sets the default values
+    // Checks to see if all users have all keys from template data, and if not
+    // assign the default values to them
+
+    // Destructure user (user = user[0])
+    let [user] = userArray;
+
+    // Check if user exists
+    const userExists = userArray.length > 0;
     if (!userExists) {
-      userData = this.templateData;
+      user = this.templateData;
     }
-    return userData;
+
+    // Check is user has all keys
+    const templateKeys = Object.keys(this.templateData);
+    templateKeys.forEach((templateValue) => {
+      if (!Object.prototype.hasOwnProperty.call(user, templateValue)) {
+        user[templateValue] = this.templateData[templateValue];
+      }
+    });
+
+    return user;
   }
 
   saveUserData(newUser) {
     // Save user data to json file while changing user specific data in the
     // User array
+
+    // Every time we save, we read file
+    const arrayOfUsers = this.getArrayOfUsers();
+
     let userExists = false;
-    this.arrayOfUsers.forEach((oldUser, index) => {
+    arrayOfUsers.forEach((oldUser, index) => {
       if (oldUser.userID === newUser.userID) {
-        this[index] = newUser;
+        arrayOfUsers[index] = newUser;
         userExists = true;
       }
-    }, this.arrayOfUsers);
+    }, arrayOfUsers);
 
     // If user doesn't exist, then push information
     if (!userExists) {
-      this.arrayOfUsers.push(newUser);
+      arrayOfUsers.push(newUser);
     }
 
     // Save data
@@ -90,7 +119,7 @@ module.exports = class User {
         console.log(error);
       }
     };
-    const jsonData = JSON.stringify(this.arrayOfUsers, null, 2);
+    const jsonData = JSON.stringify(arrayOfUsers, null, 2);
     fs.writeFileSync(this.filename, jsonData, finished);
   }
 };

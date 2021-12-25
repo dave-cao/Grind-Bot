@@ -7,6 +7,6 @@ module.exports = {
   execute(oldState, newState) {
     // Initalize voice class
     const voice = new Voice(oldState, newState);
-    voice.test();
+    voice.start();
   },
 };
