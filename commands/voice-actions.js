@@ -1,8 +1,10 @@
 // calls User class
-const User = require('./handle-voice-states/handle-user-voice.js'); // Class
+const User = require('./handle-voice-states/handle-user-voice'); // Class
 
 // Functions
-const accountabilityEnter = require('./handle-voice-states/accountability-enter.js');
+const accountabilityEnter = require('./handle-voice-states/accountability-enter');
+const accountabilityExit = require('./handle-voice-states/accountability-exit');
+const streaks = require('./handle-voice-states/streaks');
 
 module.exports = class Action {
   constructor(oldState, newState) {
@@ -34,10 +36,8 @@ module.exports = class Action {
     this.user = this.User.initUser();
   }
 
-  saveUserData() {
-    // Save user data called from the User Class
-    // Put outside if implementing more things, for now just call twice
-    this.User.saveUserData(this.user);
+  start() {
+    this.handleEvents();
   }
 
   handleEvents() {
@@ -46,6 +46,10 @@ module.exports = class Action {
       && this.oldChannelID !== this.grindChannelVC;
     const userExits = this.newChannelID !== this.grindChannelVC
       && this.oldChannelID === this.grindChannelVC;
+
+    // Don't interact with bots or beef
+    if (this.oldState.member.user.bot) return;
+    if (this.newState.id === '751885320936620162') return;
 
     // User enters
     if (userEnters) {
@@ -65,6 +69,9 @@ module.exports = class Action {
 
     // Accountability
     this.user = accountabilityEnter(this.user);
+
+    // Streaks
+    this.user = streaks(this.user, this.streakChannel, this.saveUserData); // closure
   }
 
   handleUserExit() {
@@ -72,11 +79,12 @@ module.exports = class Action {
     this.user.inVoiceChannel = false;
 
     // Accountability
-    // TODO: Make a handle user exit js file
-    // Accountability exit
+    this.user = accountabilityExit(this.user, this.accountabilityChannel);
   }
 
-  start() {
-    this.handleEvents();
+  saveUserData() {
+    // Save user data called from the User Class
+    // Put outside if implementing more things, for now just call twice
+    this.User.saveUserData(this.user);
   }
 };

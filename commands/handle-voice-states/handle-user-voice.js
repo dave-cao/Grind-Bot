@@ -35,6 +35,8 @@ module.exports = class User {
       weekTime: 0,
       monthTime: 0,
       totalTime: 0,
+
+      // AFK SYSTEM?
     };
 
     // Get array of users from JSON file

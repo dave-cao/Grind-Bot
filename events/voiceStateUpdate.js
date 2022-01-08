@@ -1,5 +1,5 @@
 // Get voice class from voice actions.js
-const Voice = require('../commands/voice-actions.js');
+const Voice = require('../commands/voice-actions');
 
 module.exports = {
   name: 'voiceStateUpdate',
