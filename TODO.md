@@ -1,5 +1,6 @@
 TODO:
 
+0. [ ] Write Jsdocs for self-function
 1. [ ] Begin Streak Bot
 2. [ ] First logic, if it isn't the same day or if first streak
 3. [ ] check how many days between
