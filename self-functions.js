@@ -3,15 +3,21 @@
 
 module.exports = {
   now: new Date(),
-  // TIME AND DATE FUNCTIONS
+  /**
+   * Checks to see if a date is today or not.
+   * @param {Date} date - the date to check
+   * @returns {bool} - true if the date is within today
+   */
   isThisDay(date) {
-    // Checks to see if a date is today or not.
-    // Returns true if yes, returns false otherwise
     return this.now.toDateString() === date.toDateString();
   },
 
+  /**
+   * Checks to see if a date is within this week
+   * @param {Date} date - the date to check
+   * @returns {bool} - true if the date is within this week
+   */
   isThisWeek(date) {
-    // Checks to see if a date is within this week.
     const weekDay = (this.now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
     const monthDay = this.now.getDate();
     let mondayThisWeek = monthDay - weekDay;
@@ -27,8 +33,12 @@ module.exports = {
     return date >= startOfThisWeek && date < startOfNextWeek;
   },
 
+  /**
+   * Checks to see if a date is within this month
+   * @param {Date} date - the date to check
+   * @returns {bool} - true if the month is within this month
+   */
   isThisMonth(date) {
-    // Checks to see if a date is within this month
     const currentMonth = this.now.getMonth();
     const currentYear = this.now.getFullYear();
 
@@ -37,12 +47,12 @@ module.exports = {
     );
   },
 
+  /**
+   * Returns an array of formatted hrs, mins and secs of a time difference in milliseconds
+   * @param {Integer} timeDiff - amount of milliseconds
+   * @returns {Array[hrs, mins, secs]} - formatted milliseconds into hrs, mins, and seconds
+   */
   getTimeDifference(timeDiff) {
-    // Returns an array of formatted hrs, mins and secs of a time difference
-    // timeDiff is in milliseconds
-    // [0]: the hours
-    // [1]: the minutes
-    // [2]: the secondt
     const hrs = Math.floor(timeDiff / (3600 * 1000));
     const min = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     const sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
