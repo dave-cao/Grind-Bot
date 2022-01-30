@@ -49,7 +49,7 @@ module.exports = class Action {
 
     // Don't interact with bots or beef
     if (this.oldState.member.user.bot) return;
-    if (this.newState.id === '751885320936620162') return;
+    // if (this.newState.id === '751885320936620162') return;
 
     // User enters
     if (userEnters) {
@@ -71,7 +71,7 @@ module.exports = class Action {
     this.user = accountabilityEnter(this.user);
 
     // Streaks
-    this.user = streaks(this.user, this.streakChannel, this.saveUserData); // closure
+    this.user = streaks(this.user, this.streakChannel, this.User); // closure
   }
 
   handleUserExit() {

@@ -50,12 +50,13 @@ module.exports = {
   /**
    * Returns an array of formatted hrs, mins and secs of a time difference in milliseconds
    * @param {Integer} timeDiff - amount of milliseconds
-   * @returns {Array[hrs, mins, secs]} - formatted milliseconds into hrs, mins, and seconds
+   * @returns {Array[sec, min, hrs, days]} - formatted milliseconds into hrs, mins, and seconds
    */
   getTimeDifference(timeDiff) {
     const hrs = Math.floor(timeDiff / (3600 * 1000));
     const min = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     const sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
-    return [hrs, min, sec];
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    return [sec, min, hrs, days];
   },
 };

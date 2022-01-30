@@ -20,7 +20,7 @@ module.exports = (userData, accountabilityChannel) => {
 
   // Report to User
   accountabilityChannel.send(
-    `<@${user.userID}> You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
+    `<@${user.userID}> You have grinded for \`${sessionTime[2]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[0]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[2]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[0]} second(s)\` grinded **Today**!`,
   );
 
   return user;

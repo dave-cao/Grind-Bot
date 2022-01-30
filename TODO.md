@@ -1,12 +1,6 @@
 TODO:
 
-0. [X] Write Jsdocs for self-function
-1. [ ] Begin Streak Bot
-2. [ ] First logic, if it isn't the same day or if first streak
-3. [ ] check how many days between
-4. [ ] streak freezes
-5. [ ] setTimeout function (actual streak system)
-    - closure save for the async function that returns
+- Implement grind profile
 
 **Mile Stones**:
 - [X] Accountability Voice
@@ -14,11 +8,14 @@ TODO:
     - [X] Accountability Exit
 
 
-- [ ] Streak Bot 
+- [X] Streak Bot 
     - Streak Freeze function
     - 12 minute streak update
         - updates streak, max streak, and streak freeze
 
+- [ ] Scheduled Messages
+    - Weekly (finished in other)
+    - Monthly (finished in other)
 
 - [ ] Grind Profile
     - [ ] Month names could go into self as an object
