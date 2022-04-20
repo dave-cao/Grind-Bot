@@ -48,6 +48,42 @@ module.exports = {
   },
 
   /**
+   * Checks to see if a date is within this season
+   *
+   * Each season consists of 4 months. The season months are static and do
+   * not change. These are:
+   * 1. January - April
+   * 2. May - August
+   * 3. September - December
+   *
+   * @param {Date} date - the date to check
+   * @returns {bool} - true if the date is within this season
+   * */
+  isThisSeason(date) {
+    const yearsMatch = !(this.now.getFullYear() - date.getFullYear());
+    const oldMonthDay = date.getMonth();
+    const newMonth = this.now.getMonth();
+
+    const checkZone = (month) => {
+      // Checks to see what zone the current month is in
+      // Zone 1: January - April
+      // Zone 2: May - August
+      // Zone 3: September - December
+      let zone;
+      if (month >= 8) {
+        zone = 3;
+      } else if (month >= 4) {
+        zone = 2;
+      } else {
+        zone = 1;
+      }
+      return zone;
+    };
+
+    // Compare the check zones
+    return checkZone(oldMonthDay) === checkZone(newMonth) && yearsMatch;
+  },
+  /**
    * Returns an array of formatted hrs, mins and secs of a time difference in milliseconds
    * @param {Integer} timeDiff - amount of milliseconds
    * @returns {Array[sec, min, hrs, days]} - formatted milliseconds into hrs, mins, and seconds

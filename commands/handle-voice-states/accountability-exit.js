@@ -12,7 +12,13 @@ module.exports = (userData, accountabilityChannel) => {
   const sessionTime = self.getTimeDifference(timeDif);
 
   // Add time difference to every time frame in user data
-  const timeFrames = ['dayTime', 'weekTime', 'monthTime', 'totalTime'];
+  const timeFrames = [
+    'dayTime',
+    'weekTime',
+    'monthTime',
+    'seasonTime',
+    'totalTime',
+  ];
   timeFrames.forEach((time) => {
     user[time] += timeDif;
   });

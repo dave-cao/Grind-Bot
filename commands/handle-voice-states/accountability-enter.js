@@ -27,12 +27,14 @@ module.exports = (userData) => {
   const isSameDay = self.isThisDay(new Date(user.dayDate));
   const isSameWeek = self.isThisWeek(new Date(user.weekDate));
   const isSameMonth = self.isThisMonth(new Date(user.monthDate));
+  const isSameSeason = self.isThisSeason(new Date(user.seasonDate));
 
   // Array of date checks
   const dateChecks = [
     [isSameDay, 'day'],
     [isSameWeek, 'week'],
     [isSameMonth, 'month'],
+    [isSameSeason, 'season'],
   ];
 
   user = dateCheck(user, dateChecks);

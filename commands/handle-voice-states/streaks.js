@@ -7,6 +7,7 @@ module.exports = (userInfo, streakChannel, USER) => {
   const user = userInfo;
   const now = new Date();
   const streakDate = new Date(user.streakDate);
+  const MINUTE = 60 * 1000;
 
   const timeDiff = now - streakDate;
   const timeArray = self.getTimeDifference(timeDiff);
@@ -75,7 +76,7 @@ module.exports = (userInfo, streakChannel, USER) => {
       }
     }
     USER.saveUserData(user);
-  }, 2000);
+  }, 12 * MINUTE);
 
   return user;
 };

@@ -31,9 +31,12 @@ module.exports = class User {
       dayDate: this.now,
       weekDate: this.now,
       monthDate: this.now,
+      seasonDate: this.now,
+
       dayTime: 0,
       weekTime: 0,
       monthTime: 0,
+      seasonTime: 0,
       totalTime: 0,
 
       // AFK SYSTEM?
