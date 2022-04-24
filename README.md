@@ -20,3 +20,19 @@ their streak will increase by 1
 
 ## Economy:
 - TBD
+
+
+### Connect to the bot by following these steps:
+
+1. Initiate node and discord.js by putting these commands in the terminal.
+```bash
+npm init
+npm install
+npm install discord.js
+```
+2. Create a `.config.json` file in the main folder and put the following in.
+```json
+{
+    "token": "MY_BOT_TOKEN"
+}
+```

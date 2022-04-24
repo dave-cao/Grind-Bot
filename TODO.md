@@ -41,6 +41,7 @@ TODO:
     - [ ] display streaks
     - [ ] Time left till lost streak
     - [ ] Use case for if user hasn't had first streak
+    - [ ] Have rank display beside name on profile
 
     
 - [ ] Leaderboard
@@ -68,6 +69,7 @@ TODO:
 
 - [ ] Assign roles when reaching a certain amount of hours
     - new implementation
+    - Implemented on other already
 
     
 - AFK system? 
