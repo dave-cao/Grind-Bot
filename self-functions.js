@@ -9,6 +9,10 @@ module.exports = {
    * @returns {bool} - true if the date is within today
    */
   isThisDay(date) {
+    // FIXME: This is probably better to have an oldDate and a newDate
+    // to compare. Because this bug happens when you start, the this.now
+    // stays the same date and isn't updated.
+    this.now = new Date();
     return this.now.toDateString() === date.toDateString();
   },
 
