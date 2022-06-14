@@ -1,5 +1,5 @@
 // calls User class
-const User = require('./handle-voice-states/handle-user-voice'); // Class
+const User = require('./handle-user'); // Class
 
 // Functions
 const accountabilityEnter = require('./handle-voice-states/accountability-enter');

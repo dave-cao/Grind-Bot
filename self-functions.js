@@ -9,9 +9,6 @@ module.exports = {
    * @returns {bool} - true if the date is within today
    */
   isThisDay(date) {
-    // FIXME: This is probably better to have an oldDate and a newDate
-    // to compare. Because this bug happens when you start, the this.now
-    // stays the same date and isn't updated.
     this.now = new Date();
     return this.now.toDateString() === date.toDateString();
   },
@@ -22,6 +19,7 @@ module.exports = {
    * @returns {bool} - true if the date is within this week
    */
   isThisWeek(date) {
+    this.now = new Date();
     const weekDay = (this.now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
     const monthDay = this.now.getDate();
     let mondayThisWeek = monthDay - weekDay;
@@ -43,6 +41,7 @@ module.exports = {
    * @returns {bool} - true if the month is within this month
    */
   isThisMonth(date) {
+    this.now = new Date();
     const currentMonth = this.now.getMonth();
     const currentYear = this.now.getFullYear();
 
@@ -64,6 +63,7 @@ module.exports = {
    * @returns {bool} - true if the date is within this season
    * */
   isThisSeason(date) {
+    this.now = new Date();
     const yearsMatch = !(this.now.getFullYear() - date.getFullYear());
     const oldMonthDay = date.getMonth();
     const newMonth = this.now.getMonth();
